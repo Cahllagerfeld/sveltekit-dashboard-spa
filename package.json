@@ -9,6 +9,7 @@
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"format": "prettier --write .",
+		"generate:types": "bun scripts/types.js",
 		"lint": "oxlint --fix .",
 		"test:unit": "vitest",
 		"test": "npm run test:unit -- --run && npm run test:e2e",
@@ -20,8 +21,10 @@
 		"@sveltejs/kit": "^2.9.0",
 		"@sveltejs/vite-plugin-svelte": "^5.0.0",
 		"autoprefixer": "^10.4.20",
+		"bits-ui": "^1.0.0-next.70",
 		"clsx": "^2.1.1",
 		"lefthook": "^1.9.0",
+		"openapi-typescript": "^7.4.4",
 		"oxlint": "^0.15.0",
 		"prettier": "^3.3.2",
 		"prettier-plugin-svelte": "^3.2.6",
@@ -39,6 +42,7 @@
 	"dependencies": {
 		"@tailwindcss/container-queries": "^0.1.1",
 		"@tailwindcss/forms": "^0.5.9",
-		"@tailwindcss/typography": "^0.5.15"
+		"@tailwindcss/typography": "^0.5.15",
+		"@tanstack/svelte-query": "^5.62.7"
 	}
 }
