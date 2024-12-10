@@ -1,7 +1,7 @@
 pre-commit:
   commands:
     oxlint:
-      glob: "*.{js,ts}"
+      glob: "*.{js,ts,jsx,tsx}"
       run: bun oxlint --fix {staged_files}
     prettier:
       glob: "*.{js,json,md,svelte,ts,yaml,yml,jsx,tsx}"
