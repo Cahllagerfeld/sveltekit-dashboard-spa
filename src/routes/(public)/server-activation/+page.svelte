@@ -8,6 +8,7 @@
 		CardFooter,
 		CardTitle,
 	} from "@/components/ui/card";
+	import ActivationForm from "./activation-form.svelte";
 </script>
 
 <Card class="md:w-[500px]">
@@ -15,8 +16,10 @@
 		<CardTitle>Activate Server</CardTitle>
 		<CardDescription>Activate your new ZenML Server</CardDescription>
 	</CardHeader>
-	<CardContent>Sheeeeeesh</CardContent>
+	<CardContent>
+		<ActivationForm />
+	</CardContent>
 	<CardFooter class="flex justify-end">
-		<Button form="password">Activate</Button>
+		<Button type="submit" form="activation-form">Activate</Button>
 	</CardFooter>
 </Card>

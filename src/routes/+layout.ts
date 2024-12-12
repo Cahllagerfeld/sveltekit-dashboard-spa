@@ -24,5 +24,5 @@ export const load: LayoutLoad = async ({ fetch, route }) => {
 		if (!data.active) throw redirect(302, resolveRoute("/(public)/server-activation", {}));
 	}
 
-	return { queryClient };
+	return { queryClient, client };
 };
