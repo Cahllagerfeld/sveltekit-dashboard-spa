@@ -8,6 +8,8 @@
 </script>
 
 <QueryClientProvider client={data.queryClient}>
-	<Toaster position="top-center" />
-	{@render children()}
+	<div class="font-medium antialiased">
+		<Toaster position="top-center" />
+		{@render children()}
+	</div>
 </QueryClientProvider>
