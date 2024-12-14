@@ -5,10 +5,12 @@ import { redirect } from "@sveltejs/kit";
 import { QueryClient } from "@tanstack/svelte-query";
 import type { LayoutLoad } from "./$types";
 import { resolveRoute } from "$app/paths";
+import { AuthManager } from "@/auth/auth-manager.svelte";
 
 export const ssr = false;
 
 export const load: LayoutLoad = async ({ fetch, route }) => {
+	const authManager = new AuthManager();
 	const queryClient = new QueryClient({
 		defaultOptions: {
 			queries: {
@@ -21,8 +23,8 @@ export const load: LayoutLoad = async ({ fetch, route }) => {
 	const client = createApiClient(fetch);
 	const data = await queryClient.ensureQueryData(serverQueries.serverInfo(client));
 	if (route.id !== "/(public)/server-activation") {
-		if (!data.active) throw redirect(302, resolveRoute("/(public)/server-activation", {}));
+		if (!data.active) throw redirect(303, resolveRoute("/(public)/server-activation", {}));
 	}
 
-	return { queryClient, client };
+	return { queryClient, client, authManager };
 };
