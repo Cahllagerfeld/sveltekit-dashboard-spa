@@ -26,7 +26,6 @@ export const load: LayoutLoad = async ({ fetch, route }) => {
 		defaultOptions: {
 			queries: {
 				enabled: browser,
-				staleTime: 60 * 1000,
 			},
 		},
 	});
