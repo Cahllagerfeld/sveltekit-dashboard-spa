@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { Snippet } from "svelte";
-	import type { LayoutData } from "./$types";
+	import type { LayoutData } from "../$types";
 	import * as Breadcrumb from "$lib/components/ui/breadcrumb";
 	import { Separator } from "$lib/components/ui/separator";
 	import * as Sidebar from "$lib/components/ui/sidebar";

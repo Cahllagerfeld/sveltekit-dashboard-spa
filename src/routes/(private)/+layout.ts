@@ -1,6 +1,6 @@
 import { redirect } from "@sveltejs/kit";
-import type { LayoutLoad } from "./$types";
 import { resolveRoute } from "$app/paths";
+import type { LayoutLoad } from "./$types";
 
 export const load: LayoutLoad = async ({ parent }) => {
 	const { authManager } = await parent();
