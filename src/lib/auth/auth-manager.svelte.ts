@@ -13,23 +13,27 @@ function setStoredUser(username: string | null) {
 }
 
 export class AuthManager {
-	user: string | null = $state(null);
-	isAuthenticated = $derived(!!this.user);
+	#user: string | null = $state(null);
+	#isAuthenticated = $derived(!!this.#user);
 
 	constructor() {
 		const user = getStoredUser();
 		if (user) {
-			this.user = user;
+			this.#user = user;
 		}
 	}
 
 	logout() {
 		setStoredUser(null);
-		this.user = null;
+		this.#user = null;
 	}
 
 	login(username: string) {
-		this.user = username;
+		this.#user = username;
 		setStoredUser(username);
+	}
+
+	get isAuthenticated() {
+		return this.#isAuthenticated;
 	}
 }
