@@ -5,6 +5,8 @@ const headers = {
 	"Source-Context": "dashboard-v2",
 };
 
+export type WithApiClient<T> = T & { apiClient: ApiClient };
+
 export function createApiClient(fetchFn?: typeof fetch) {
 	return async function apiClient<T>(endpoint: RequestInfo | URL, init?: RequestInit) {
 		const actualFetch = fetchFn || fetch;
