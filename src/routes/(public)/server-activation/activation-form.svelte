@@ -1,19 +1,24 @@
 <script lang="ts">
-	import { defaults, superForm } from "sveltekit-superforms";
+	import { goto } from "$app/navigation";
 	import * as Form from "$lib/components/ui/form/index.js";
-	import { zod } from "sveltekit-superforms/adapters";
-	import { activationSchema } from "./schema";
 	import { Input } from "@/components/ui/input";
-	import { useServerActivation } from "@/data/server/activate-server";
-	import { toast } from "svelte-sonner";
 	import { createApiClient } from "@/data/api-client";
+	import { useServerActivation } from "@/data/server/activate-server";
+	import { useQueryClient } from "@tanstack/svelte-query";
+	import { toast } from "svelte-sonner";
+	import { defaults, superForm } from "sveltekit-superforms";
+	import { zod } from "sveltekit-superforms/adapters";
 	import { adjectives, animals, colors, uniqueNamesGenerator } from "unique-names-generator";
+	import { activationSchema } from "./schema";
 
 	const client = createApiClient();
+	const queryClient = useQueryClient();
 
 	const mutation = useServerActivation({
 		onSuccess: async () => {
 			toast.success("Server activated successfully");
+			queryClient.invalidateQueries({ queryKey: ["info"] });
+			goto("/");
 		},
 		onError: async (e) => {
 			toast.error("Failed to activate server");
