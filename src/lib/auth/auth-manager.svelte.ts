@@ -4,7 +4,7 @@ function getStoredUser() {
 	return localStorage.getItem(localStorageKey);
 }
 
-function setStoredUser(username: string | null) {
+export function setStoredUser(username: string | null) {
 	if (username) {
 		localStorage.setItem(localStorageKey, username);
 	} else {
