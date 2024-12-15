@@ -15,6 +15,7 @@
 	import { Avatar, AvatarImage } from "../ui/avatar";
 	import { useSidebar } from "../ui/sidebar";
 	import Skeleton from "../ui/skeleton/skeleton.svelte";
+	import CreateWorkspaceDialog from "@/features/workspaces/create/create-workspace-dialog.svelte";
 
 	const sidebar = useSidebar();
 
@@ -22,6 +23,8 @@
 
 	const workspaces = createQuery(workspaceQueries.list(apiClient));
 	const serverInfo = createQuery(serverQueries.serverInfo(apiClient));
+
+	let isCreateDialogOpen = false;
 
 	$: activeWorkspace = $workspaces.data?.items.find(
 		(w) => w.id === $page.params.workspace_id
@@ -37,6 +40,7 @@
 {/if}
 
 {#if $workspaces.status === "success" && $serverInfo.status === "success"}
+	<CreateWorkspaceDialog bind:open={isCreateDialogOpen} />
 	<Sidebar.Menu>
 		<Sidebar.MenuItem>
 			<DropdownMenu.Root>
@@ -85,13 +89,13 @@
 							<span class="truncate">{workspace.name}</span>
 						</DropdownMenu.Item>
 					{/each}
-					<!-- <DropdownMenu.Separator />
-					<DropdownMenu.Item class="gap-2 p-2">
+					<DropdownMenu.Separator />
+					<DropdownMenu.Item onSelect={() => (isCreateDialogOpen = true)} class="gap-2 p-2">
 						<div class="flex size-6 items-center justify-center rounded-md border bg-background">
 							<Plus class="size-4" />
 						</div>
-						<div class="font-medium text-muted-foreground">Add workspace</div>
-					</DropdownMenu.Item> -->
+						<div class="font-medium text-muted-foreground">Create workspace</div>
+					</DropdownMenu.Item>
 				</DropdownMenu.Content>
 			</DropdownMenu.Root>
 		</Sidebar.MenuItem>
