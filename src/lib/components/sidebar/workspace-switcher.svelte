@@ -24,11 +24,11 @@
 	const workspaces = createQuery(workspaceQueries.list(apiClient));
 	const serverInfo = createQuery(serverQueries.serverInfo(apiClient));
 
-	let isCreateDialogOpen = false;
+	let isCreateDialogOpen = $state(false);
 
-	$: activeWorkspace = $workspaces.data?.items.find(
-		(w) => w.id === $page.params.workspace_id
-	)?.name;
+	let activeWorkspace = $derived(
+		$workspaces.data?.items.find((w) => w.id === $page.params.workspace_id)?.name
+	);
 </script>
 
 {#if $workspaces.status === "pending"}
