@@ -13,7 +13,7 @@
 		user: {
 			name: "shadcn",
 			email: "m@example.com",
-			avatar: "/avatars/shadcn.jpg",
+			avatar: getGradientAvatarUrl("shadcn", { size: 32 }),
 		},
 		navMain: [
 			{
@@ -142,6 +142,7 @@
 	import * as Sidebar from "$lib/components/ui/sidebar/index.js";
 	import type { ComponentProps } from "svelte";
 	import WorkspaceSwitcher from "./workspace-switcher.svelte";
+	import { getGradientAvatarUrl } from "@/features/avatars/gradient-avatar";
 
 	let { ref = $bindable(null), ...restProps }: ComponentProps<typeof Sidebar.Root> = $props();
 </script>
